@@ -1,6 +1,2 @@
-﻿  Control.cpp
-  EventEngine.cpp
-  Graphics.cpp
-c:\users\alan\desktop\finalshitot\common\graphics.cpp(97): warning C4244: 'argument': conversion from 'DWORD' to 'WORD', possible loss of data
-  Generating Code...
+﻿  Label.cpp
   Common.vcxproj -> C:\Users\Alan\Desktop\FinalShitot\Debug\Common.lib
