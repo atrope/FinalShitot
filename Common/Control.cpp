@@ -1,5 +1,7 @@
 #include "Control.h"
 
+Control* Control::focused = NULL;
+
 Control::~Control() {
 	for each (Control* control in controls)
 	{
