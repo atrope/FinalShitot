@@ -12,7 +12,7 @@ protected:
 	vector<Control*> controls;
 	short left;
 	short top;
-	short width;
+	short width, maxWidth;
 	bool isFocus;
 	bool isclick;
 
