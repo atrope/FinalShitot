@@ -2,13 +2,11 @@
 
 
 
-TextBox::TextBox()
+TextBox::TextBox(short left, short top, short maxWidth = 30) : Control()
 {
-}
-
-TextBox::TextBox(short left, short top, short maxWidth)
-{
-
+	this->left = left;
+	this->top = top;
+	this->maxWidth = maxWidth;
 }
 
 TextBox::~TextBox()
@@ -59,10 +57,11 @@ void TextBox::keyDown(int keyCode, char character, Graphics& g)
 	case VK_BACK:
 		this->delChar(g);
 	default:
+		if (keyCode >= 32 && keyCode <= 126)
+		{
+			this->addValue(character, g);
+		}
 		break;
 	}
-	if (keyCode >= 32 && keyCode <= 126)
-	{
-		this->addValue(character, g);
-	}
+
 }
