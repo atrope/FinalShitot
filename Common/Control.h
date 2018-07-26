@@ -6,25 +6,33 @@ using namespace std;
 
 class Control
 {
+	static Control* focused;
 
 protected:
+	vector<Control*> controls;
 	short left;
 	short top;
-	
-public:
-	Control();
-	static Control* getFocus() { return NULL; };
-	static void setFocus(Control& control) {};
-	
-	
+	bool isFocus;
+	bool isclick;
 
-	virtual void draw(Graphics& g, int x, int y, size_t z) {};
+public:
+	Control() : left(0), top(0), isFocus(true) {};
+	static Control* getFocus() { return focused; };
+	static void setFocus(Control& control) { focused = &control; };
+
+
+	virtual void add(Control* newControl);
+	virtual void draw(Graphics& g);
+	virtual void draWrapper(Graphics& g) {};
+	virtual void drawControls(Graphics& g);
 	virtual void mousePressed(int x, int y, bool isLeft) {};
 	virtual void keyDown(int keyCode, char charecter) {};
-	virtual short getLeft() { return 0; };
-	virtual short getTop() { return 0; };
-	virtual void getAllControls(vector<Control*>* controls) {};
-	virtual bool canGetFocus() { return FALSE; };
+	virtual short getLeft() { return left; };
+	virtual short getTop() { return top; };
+	virtual void setTop(short top) { this->top = top; };
+	virtual void setLeft(short left) { this->left = left; };
+	virtual void getAllControls(vector<Control*>* controls) { controls = &(this->controls); };
+	virtual bool canGetFocus() { return isFocus; };
 	virtual bool myPureFunction() = 0;
 	~Control();
 };
