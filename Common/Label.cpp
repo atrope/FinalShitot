@@ -14,7 +14,10 @@ void Label::setValue(string value)
 }
 
 
-void Label::draw(Graphics& g, int x, int y, size_t z)
+void Label::draw(Graphics& g, size_t z)
 {
-    if (!z) g.write(value);
+	if (!z) {
+		//g.clearScreen();
+		g.write(getLeft(), getTop(), value);
+	}
 }

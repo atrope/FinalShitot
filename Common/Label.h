@@ -13,6 +13,6 @@ class Label: public Control
         Label(string value);
         string getValue();
         void setValue(string value);
-        void draw(Graphics& g, int x, int y, size_t z);
+        void draw(Graphics& g, size_t z);
 		bool myPureFunction() { return false; };
 };
