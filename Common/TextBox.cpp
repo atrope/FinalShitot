@@ -13,6 +13,10 @@ TextBox::~TextBox()
 {
 }
 
+void TextBox::draw(Graphics& g) {
+	TextBox::draWrapper(g);
+}
+
 void TextBox::draWrapper(Graphics& g)
 {
 	g.write(left-1, top, "\xB3");
@@ -21,7 +25,7 @@ void TextBox::draWrapper(Graphics& g)
 	g.write(left - 1, top + 1, "\xC0");
 	g.write(left + maxWidth, top - 1, "\xBF");
 	g.write(left + maxWidth, top + 1, "\xD9");
-	for (size_t i = 0; i < maxWidth; i++)
+	for (short i = 0; i < maxWidth; i++)
 	{
 		g.write(left + i, top - 1, "\xC4");
 		g.write(left + i, top + 1, "\xC4");

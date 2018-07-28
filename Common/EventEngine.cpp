@@ -39,18 +39,15 @@ void EventEngine::run(Control &main)
 	setFocusable(main);
 	while (1)
 	{
-		if (redraw)
-		{
+		if (redraw){
 			_graphics.clearScreen();
 			_graphics.setCursorVisibility(false);
 			main.draw(_graphics);
 			redraw = false;
 		}
-
 		auto focused = Control::getFocus();
 
-		if (dynamic_cast<TextBox*>(focused) != NULL)
-		{
+		if (dynamic_cast<TextBox*>(focused) != NULL){
 			_graphics.setCursorVisibility(true);
 			_graphics.moveTo( focused->getCrusorLoc(), focused->getTop());
 		}
