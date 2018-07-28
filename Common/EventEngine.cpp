@@ -1,11 +1,10 @@
 #include "EventEngine.h"
 #include <vector>
 #include <algorithm>
+#include <iostream>
 using namespace std;
 
-EventEngine::EventEngine(DWORD input, DWORD output)
-	: _console(GetStdHandle(input)), _graphics(output)
-{
+EventEngine::EventEngine(DWORD input, DWORD output) : _console(GetStdHandle(input)), _graphics(output) {
 	GetConsoleMode(_console, &_consoleMode);
 	SetConsoleMode(_console, ENABLE_WINDOW_INPUT | ENABLE_MOUSE_INPUT);
 }
@@ -20,8 +19,9 @@ void EventEngine::run(Control &c)
 			_graphics.setCursorVisibility(false);
 			for (size_t z = 0; z < 5; ++z)
 			{
-				c.draw(_graphics, 0, 0, z);
+				c.draw(_graphics, c.getLeft(), c.getTop(), z);
 			}	
+
 			redraw = false;
 		}
 
@@ -64,8 +64,7 @@ void EventEngine::run(Control &c)
 	}
 }
 
-EventEngine::~EventEngine()
-{
+EventEngine::~EventEngine(){
 	SetConsoleMode(_console, _consoleMode);
 }
 
