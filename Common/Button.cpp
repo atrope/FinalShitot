@@ -5,14 +5,26 @@ Button::Button() : Label()
 {
 	isFocus = false;
 	isClick = true;
-	setWidth(getValue().size() + 1 + 1); //1 for each side
+	setParams(getValue().size(), 1);
 }
 
 Button::Button(string s) : Button()
 {
 	setValue(s);
-	setWidth(getValue().size() + 1 + 1); //1 for each side
-	setHeight(2); //Text height, should create constants File
+	setParams(getValue().size(), 1);
+}
+
+Button::Button(string value, Color background, Color foreground) : Button()
+{
+	setValue(value);
+	setParams(getValue().size(), 1);
+	setColor(background, foreground);
+}
+
+void Button::setParams(short width, short height)
+{
+	setWidth(width);
+	setHeight(height);
 }
 
 bool Button::mousePressed(int x, int y, bool isLeft, Graphics& g)
