@@ -1,5 +1,7 @@
 #include "Control.h"
 
+Control::Control() : isFocus(true), left(0), top(0), width(0), height(0), connected_control(NULL) {}
+
 Control* Control::focused = NULL;
 
 Control::~Control() {
@@ -10,12 +12,23 @@ Control::~Control() {
 	}
 }
 
+void Control::drawGround(Graphics& g) {
+	g.setBackground(background);
+	g.setForeground(foreground);
+}
+
 void Control::draw(Graphics& g) {
-	for each (Control* control in controls) 
+	drawGround(g);
+	draWrapper(g);
+	drawControls(g);
+}
+
+void Control::drawControls(Graphics& g) {
+	for each (Control* control in controls) {
 		control->draw(g);
 }
 
-void Control::getAllControls(vector<Control*>* controlsCopy) { 
+void Control::getAllControls(vector<Control*>* controlsCopy) {
 	for (int i = 0; i<controls.size(); i++)
 		(*controlsCopy).push_back(controls[i]);
 };
@@ -26,4 +39,15 @@ void Control::add(Control* newControl)
 		//newControl->setTop(top + newControl->getTop());
 		this->controls.push_back(newControl);
 	}
+}
+
+void Control::setColor(Color background, Color foreground)
+{
+	this->background = background;
+	this->foreground = foreground;
+}
+
+void Control::setConnectedControl(Control *c)
+{
+	connected_control = c;
 }
