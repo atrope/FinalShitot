@@ -11,6 +11,9 @@ int main(int argc, char** argv)
 	Panel p;	
 	TextBox tb;
 	string value("teste");
+	p.setWidth(300);
+	p.setHeight(300);
+	p.setColor(Color::Red,Color::White);
 	Button b(value, Color::White, Color::Black);;
 	b.setTop(21);
 	b.setLeft(21);
@@ -18,7 +21,9 @@ int main(int argc, char** argv)
 	l.setTop(1);
 	l.setLeft(1);
 	p.add(&l); p.add(&b);
-	tb.setWidth(10);
+	tb.setColor(Color::Red, Color::White);
+	tb.setWidth(30);
+	tb.setHeight(1);
 	tb.setTop(1);
 	tb.setLeft(1 + (short)value.size() + 1);
 	p.add(&tb);
