@@ -4,12 +4,11 @@
 class TextBox : public Control
 {
 	string value;
-	void draWrapper(Graphics& g);
 public:
 	void addValue(char newValue, Graphics& g);
 	void delChar(Graphics& g);
 	void draw(Graphics& g);
-	TextBox() : Control(){};
+	TextBox() : Control(){setBorder(true);};
 	TextBox(short left, short top, short width);
 	void keyDown(int keyCode, char character, Graphics& g);
 	bool myPureFunction() { return true; };
