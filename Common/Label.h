@@ -10,8 +10,6 @@ class Label : public Control
 {
 private:
 	string value;
-	Color background;
-	Color foreground;
 public:
 	Label();
 	Label(string value);
