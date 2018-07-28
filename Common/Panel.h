@@ -1,8 +1,11 @@
 #pragma once
-class Panel
-{
+#include "Control.h"
+
+class Panel : public Control {
 public:
 	Panel();
 	~Panel();
+	bool myPureFunction() { return false; };
+
 };
 

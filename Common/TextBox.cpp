@@ -2,26 +2,28 @@
 
 
 
-TextBox::TextBox(short left, short top, short maxWidth = 30) : Control()
+TextBox::TextBox(short left, short top, short width = 30) : Control(left,top)
 {
-	this->left = left;
-	this->top = top;
-	this->maxWidth = maxWidth;
+	this->width = width;
 }
 
 TextBox::~TextBox()
 {
 }
 
+void TextBox::draw(Graphics& g) {
+	TextBox::draWrapper(g);
+}
+
 void TextBox::draWrapper(Graphics& g)
 {
 	g.write(left-1, top, "\xB3");
-	g.write(left + maxWidth, top, "\xB3");
+	g.write(left + width, top, "\xB3");
 	g.write(left - 1, top - 1, "\xDA");
 	g.write(left - 1, top + 1, "\xC0");
-	g.write(left + maxWidth, top - 1, "\xBF");
-	g.write(left + maxWidth, top + 1, "\xD9");
-	for (size_t i = 0; i < maxWidth; i++)
+	g.write(left + width, top - 1, "\xBF");
+	g.write(left + width, top + 1, "\xD9");
+	for (short i = 0; i < width; i++)
 	{
 		g.write(left + i, top - 1, "\xC4");
 		g.write(left + i, top + 1, "\xC4");
@@ -31,8 +33,7 @@ void TextBox::draWrapper(Graphics& g)
 
 void TextBox::addValue(char newValue, Graphics& g)
 {
-	if (this->width < this->maxWidth) {
-		this->width++;
+	if (this->value.size() < this->width) {
 		this->value.push_back(newValue);
 		g.write(left, top, value); 
 	}
@@ -40,12 +41,11 @@ void TextBox::addValue(char newValue, Graphics& g)
 
 void TextBox::delChar(Graphics& g)
 {
-	if (this->width) {
+	if (this->value.size()) {
 		this->value.replace(this->value.size() - 1, 1, " ");
 		g.write(left, top, value); // Draw string without the Char
 		this->value.pop_back(); //Remove it
-		this->width--;
-		g.moveTo(this->getLeft() + this->width, this->getTop()); //Refresh Cursor
+		g.moveTo(this->getLeft() + this->value.size(), this->getTop()); //Refresh Cursor
 	}
 }
 
