@@ -1,10 +1,10 @@
-#include "ComboBox.h"
+#include "RadioBox.h"
 
-ComboBox::~ComboBox()
+RadioBox::~RadioBox()
 {
 }
 
-void ComboBox::draw(Graphics& g) {
+void RadioBox::draw(Graphics& g) {
 	string temp;
 	for (size_t i = 0; i < this->list.size(); i++) {
 		temp = ((list.at(i).selected) ? "(O) " : "( ) ") + list.at(i).name + ((i == arrow) ? " <=" : "");

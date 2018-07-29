@@ -42,7 +42,7 @@
     <ClCompile Include="NumericBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ComboBox.cpp">
+    <ClCompile Include="RadioBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -74,10 +74,10 @@
     <ClInclude Include="NumericBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ComboBox.h">
+    <ClInclude Include="Item.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Item.h">
+    <ClInclude Include="RadioBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
