@@ -46,7 +46,7 @@ public:
 	virtual bool hasBorder() { return isBorder; };
 	virtual void drawBorder(Graphics& g);
 
-	void setColor(Color background, Color foreground);
+	virtual void setColor(Color background, Color foreground);
 	void setConnectedControl(Control* c);
 	virtual bool myPureFunction() = 0;
 	~Control();
