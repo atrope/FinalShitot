@@ -27,8 +27,8 @@ void Control::drawBorder(Graphics& g)
 {
 	g.write(left - 1, top - 1, "\xDA"); // Left top
 	g.write(left + width, top - 1, "\xBF"); // Right Top
-	g.write(left - 1, height + 1, "\xC0"); // Left Bottom
-	g.write(left + width, height+1, "\xD9"); // right bottom
+	g.write(left - 1, top+height, "\xC0"); // Left Bottom
+	g.write(left + width, top+height, "\xD9"); // right bottom
 
 	for (short i = 0; i < height; i++) { //Vertical
 		g.write(left - 1, top + i, "\xB3");
@@ -36,7 +36,7 @@ void Control::drawBorder(Graphics& g)
 	}
 	for (short i = 0; i < width; i++){ // Horizontal
 		g.write(left + i, top - 1, "\xC4");
-		g.write(left + i, height + 1, "\xC4");
+		g.write(left + i, top + height, "\xC4");
 	}
 	g.moveTo(left, top);// Refresh cursor position
 }

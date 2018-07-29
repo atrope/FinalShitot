@@ -1,32 +1,28 @@
 #include "Button.h"
 
-
-Button::Button() : Label()
-{
+Button::Button() : Label(){
 	isFocus = false;
 	isClick = true;
-	setParams(getValue().size(), 1);
+	setWidth(getValue().size());
+	setHeight(1);
+	setBorder(true);
 }
 
-Button::Button(string s) : Button()
-{
-	setValue(s);
-	setParams(getValue().size(), 1);
+Button::Button(string value) : Label(value){
+	setWidth(getValue().size());
+	setHeight(1);
+	setBorder(true);
+
 }
 
-Button::Button(string value, Color background, Color foreground) : Button()
-{
-	setValue(value);
-	setParams(getValue().size(), 1);
-	setColor(background, foreground);
+Button::Button(string value, Color background, Color foreground) : Label(value,background,foreground){
+	setWidth(getValue().size());
+	setHeight(1);
+	setBorder(true);
+
 }
 
-void Button::setParams(short width, short height)
-{
-	setWidth(width);
-	setHeight(height);
-}
-
+/*
 bool Button::mousePressed(int x, int y, bool isLeft, Graphics& g)
 {
 	if (isLeft) {
@@ -38,13 +34,12 @@ bool Button::mousePressed(int x, int y, bool isLeft, Graphics& g)
 		return true;
 	}
 	return false;
-}
+}*/
 
 bool Button::myPureFunction()
 {
 	return false;
 }
 
-Button::~Button()
-{
+Button::~Button(){
 }
