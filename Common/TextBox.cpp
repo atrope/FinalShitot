@@ -13,7 +13,10 @@ TextBox::~TextBox()
 }
 
 void TextBox::draw(Graphics& g) {
-
+	string tmp = getValue();
+	for (int i = tmp.size(); i<getWidth(); i++) 
+		tmp.push_back(' ');
+	g.write(getLeft(),getTop(), tmp);
 }
 
 
