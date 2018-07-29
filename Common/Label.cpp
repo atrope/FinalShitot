@@ -25,5 +25,5 @@ void Label::setValue(string value){
 
 
 void Label::draw(Graphics& g){
-		g.write(getTop(), getLeft(), this->value);
+		g.write(getLeft(), getTop(), this->value);
 }

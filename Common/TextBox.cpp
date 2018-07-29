@@ -2,8 +2,7 @@
 
 
 
-TextBox::TextBox(short left, short top, short width = 30) : Control(left,top)
-{
+TextBox::TextBox(short left, short top, short width = 30) : Control(left,top){
 	this->width = width;
 	setBorder(true);
 }

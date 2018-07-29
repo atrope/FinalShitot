@@ -32,10 +32,8 @@ int main(int argc, char** argv){
 	b2.setLeft(20);
 	p.add(&b2);
 	
-	NumericBox nb(0,99);
+	NumericBox nb(0,99,10,10);
 	nb.setColor(Color::Orange, Color::Black);
-	nb.setTop(10);
-	nb.setLeft(10);
 	p.add(&nb);
 
 	TextBox tb;

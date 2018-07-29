@@ -7,9 +7,9 @@
 class NumericBox : public TextBox{
 protected:
 	int min, max,actual;
-	Button plus;
+	Button plus,minus;
 public:
-	NumericBox(int min,int max);
+	NumericBox(int min,int max,short left,short top);
 //	bool mousePressed(int x, int y, bool isLeft, Graphics& g);
 	virtual bool myPureFunction();
 	virtual ~NumericBox();
