@@ -1,10 +1,6 @@
 #pragma once
 #include "Control.h"
-
-struct item {
-	string name;
-	bool selected;
-};
+#include "Item.h"
 
 class CheckList: public Control
 {

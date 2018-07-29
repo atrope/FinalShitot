@@ -8,6 +8,8 @@
 #include "../Common/CheckList.h"
 
 #include "../Common/NumericBox.h"
+#include "../Common/ComboBox.h"
+
 
 
 int main(int argc, char** argv){
@@ -15,6 +17,7 @@ int main(int argc, char** argv){
 
 	Panel p;
 	CheckList cl(0,20,5);
+	ComboBox cb(40, 20, 7);
 	string value("teste");
 	string test_val("My button");
 	//p.setWidth(300);
@@ -27,6 +30,7 @@ int main(int argc, char** argv){
 	p.add(&l);
 
 	Button b2(test_val, Color::Green, Color::Blue);
+	p.add(&cb);
 	p.add(&cl);
 	b2.setTop(20);
 	b2.setLeft(20);

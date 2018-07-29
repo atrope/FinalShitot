@@ -10,6 +10,7 @@ Control::~Control() {
 			delete control;
 	}
 }
+/////
 
 void Control::draw(Graphics& g) {
 	for each (Control* control in controls){
