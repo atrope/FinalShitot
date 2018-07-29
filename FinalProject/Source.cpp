@@ -9,13 +9,14 @@
 
 #include "../Common/NumericBox.h"
 #include "../Common/MessageBoxx.h"
-
+#include "../Common/RadioBox.h"
 
 int main(int argc, char** argv){
 	EventEngine e;
 
 	Panel p;
 	CheckList cl(0,20,5);
+	RadioBox cb(40, 20, 7);
 	string value("teste");
 	string test_val("My button");
 	//p.setWidth(300);
@@ -28,6 +29,7 @@ int main(int argc, char** argv){
 	p.add(&l);
 
 	Button b2(test_val, Color::Green, Color::Blue);
+	p.add(&cb);
 	p.add(&cl);
 	b2.setTop(20);
 	b2.setLeft(20);
