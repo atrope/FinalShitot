@@ -116,6 +116,7 @@
     <ClCompile Include="EventEngine.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Label.cpp" />
+    <ClCompile Include="MessageBoxx.cpp" />
     <ClCompile Include="Panel.cpp" />
     <ClCompile Include="NumericBox.cpp" />
     <ClCompile Include="TextBox.cpp" />
@@ -126,6 +127,7 @@
     <ClInclude Include="Control.h" />
     <ClInclude Include="EventEngine.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="MessageBoxx.h" />
     <ClInclude Include="NumericBox.h" />
     <ClInclude Include="Label.h" />
     <ClInclude Include="Panel.h" />

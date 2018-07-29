@@ -8,6 +8,7 @@
 #include "../Common/CheckList.h"
 
 #include "../Common/NumericBox.h"
+#include "../Common/MessageBoxx.h"
 
 
 int main(int argc, char** argv){
@@ -20,7 +21,7 @@ int main(int argc, char** argv){
 	//p.setWidth(300);
 	//p.setHeight(300);
 	//p.setColor(Color::Red,Color::White);
-	
+
 	Label l(value, Color::White, Color::Black);
 	l.setTop(1);
 	l.setLeft(1);
@@ -31,7 +32,7 @@ int main(int argc, char** argv){
 	b2.setTop(20);
 	b2.setLeft(20);
 	p.add(&b2);
-	
+
 	NumericBox nb(0,99,10,10);
 	nb.setColor(Color::Orange, Color::Black);
 	p.add(&nb);
@@ -44,6 +45,8 @@ int main(int argc, char** argv){
 	tb.setLeft(1 + (short)value.size() + 1);
 	p.add(&tb);
 
+	MessageBoxx mb(" Mesasge cool", Color::Green, Color::Black, 5,5);
+	p.add(&mb);
 
 	e.run(p);
 }
