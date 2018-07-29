@@ -36,11 +36,12 @@
     <ClCompile Include="Button.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-<<<<<<< HEAD
+
     <ClCompile Include="CheckList.cpp">
-=======
+      <Filter>Source Files</Filter>
+    </ClCompile>
+
     <ClCompile Include="NumericBox.cpp">
->>>>>>> bf6c344c4c875f2bb7e4f2f522df20dfb8c2822d
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -66,11 +67,10 @@
     <ClInclude Include="Button.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="CheckList.h">
-=======
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="NumericBox.h">
->>>>>>> bf6c344c4c875f2bb7e4f2f522df20dfb8c2822d
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
