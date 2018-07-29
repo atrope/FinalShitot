@@ -13,33 +13,40 @@ Control::~Control() {
 /////
 
 void Control::draw(Graphics& g) {
-	for each (Control* control in controls){
-		Color oldBack = g.getBackground();
-		Color oldFore = g.getForeground();
-		g.setBackground(control->background);
-		g.setForeground(control->foreground);
-		if (control->hasBorder()) control->drawBorder(g);
+	for each (Control* control in controls) 
 		control->draw(g);
-		g.setBackground(oldBack);
-		g.setForeground(oldFore);
-	}
 }
-void Control::drawBorder(Graphics& g)
-{
-	g.write(left - 1, top - 1, "\xDA"); // Left top
-	g.write(left + width, top - 1, "\xBF"); // Right Top
-	g.write(left - 1, top+height, "\xC0"); // Left Bottom
-	g.write(left + width, top+height, "\xD9"); // right bottom
 
-	for (short i = 0; i < height; i++) { //Vertical
-		g.write(left - 1, top + i, "\xB3");
-		g.write(left + width, top + i, "\xB3");
+void Control::drawIt(Graphics& g, Control* control) {
+	Color oldBack = g.getBackground();
+	Color oldFore = g.getForeground();
+	g.setBackground(control->getBackground());
+	g.setForeground(control->getForeground());
+	string tmp = " ";
+	tmp.resize(control->getWidth());
+	for (size_t i = 0; i < control->getHeight(); i++)
+		g.write(control->getLeft(), control->getTop() + i, tmp);
+	if (control->hasBorder()) control->drawBorder(g,control);
+	control->drawInside(g);
+	g.setBackground(oldBack);
+	g.setForeground(oldFore);
+}
+
+void Control::drawBorder(Graphics& g, Control* control){
+	g.write(control->getLeft() - 1, control->getTop() - 1, "\xDA"); // Left top
+	g.write(control->getLeft() + control->getWidth(), control->getTop() - 1, "\xBF"); // Right Top
+	g.write(control->getLeft() - 1, control->getTop()+control->getHeight(), "\xC0"); // Left Bottom
+	g.write(control->getLeft() + control->getWidth(), control->getTop()+control->getHeight(), "\xD9"); // right bottom
+
+	for (short i = 0; i < control->getHeight(); i++) { //Vertical
+		g.write(control->getLeft() - 1, control->getTop() + i, "\xB3");
+		g.write(control->getLeft() + control->getWidth(), control->getTop() + i, "\xB3");
 	}
 	for (short i = 0; i < width; i++){ // Horizontal
-		g.write(left + i, top - 1, "\xC4");
-		g.write(left + i, top + height, "\xC4");
+		g.write(control->getLeft() + i, control->getTop() - 1, "\xC4");
+		g.write(control->getLeft() + i, control->getTop() + control->getHeight(), "\xC4");
 	}
-	g.moveTo(left, top);// Refresh cursor position
+	g.moveTo(control->getLeft(), control->getTop());// Refresh cursor position
 }
 
 void Control::getAllControls(vector<Control*>* controlsCopy) {

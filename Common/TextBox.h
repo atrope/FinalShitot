@@ -14,6 +14,8 @@ public:
 	TextBox(short left, short top, short width);
 	void keyDown(int keyCode, char character, Graphics& g);
 	bool myPureFunction() { return true; };
+	virtual void drawInside(Graphics& g);
+
 	~TextBox();
 };
 

@@ -5,12 +5,16 @@ CheckList::~CheckList()
 {
 }
 
+
 void CheckList::draw(Graphics& g) {
+	drawIt(g, this);
+}
+void CheckList::drawInside(Graphics& g) {
 	string temp;
 	for (size_t i = 0; i < this->list.size(); i++) {
 		temp = ((list.at(i).selected) ? "[X] " : "[ ] ") + list.at(i).name + ((i == arrow) ? " <=" : "");
-		
-		g.write(this->getLeft(), this->getTop()+i, temp);
+
+		g.write(this->getLeft(), this->getTop() + i, temp);
 	}
 }
 /*

@@ -5,6 +5,9 @@ RadioBox::~RadioBox()
 }
 
 void RadioBox::draw(Graphics& g) {
+	drawIt(g, this);
+}
+void RadioBox::drawInside(Graphics& g) {
 	string temp;
 	for (size_t i = 0; i < this->list.size(); i++) {
 		temp = ((list.at(i).selected) ? "(O) " : "( ) ") + list.at(i).name + ((i == arrow) ? " <=" : "");
@@ -12,3 +15,4 @@ void RadioBox::draw(Graphics& g) {
 		g.write(this->getLeft(), this->getTop() + i, temp);
 	}
 }
+

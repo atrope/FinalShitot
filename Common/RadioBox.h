@@ -13,5 +13,7 @@ public:
 	};
 	void draw(Graphics& g);
 	bool myPureFunction() { return false; };
+	virtual void drawInside(Graphics& g);
+
 	~RadioBox();
 };

@@ -37,6 +37,10 @@ void Label::setValue(string value){
 }
 
 
-void Label::draw(Graphics& g){
-		g.write(getLeft(), getTop(), this->value);
+void Label::draw(Graphics& g) {
+	drawIt(g, this);
 }
+void Label::drawInside(Graphics& g) {
+	g.write(getLeft(), getTop(), this->value);
+}
+

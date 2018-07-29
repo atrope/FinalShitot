@@ -19,9 +19,10 @@ int main(int argc, char** argv){
 	RadioBox cb(40, 20, 7);
 	string value("teste");
 	string test_val("My button");
-	//p.setWidth(300);
-	//p.setHeight(300);
-	//p.setColor(Color::Red,Color::White);
+	p.setWidth(80);
+	p.setHeight(28);
+	p.setBorder(true);
+	p.setColor(Color::Red,Color::White);
 
 	Label l(value, Color::White, Color::Black);
 	l.setTop(1);
@@ -43,7 +44,7 @@ int main(int argc, char** argv){
 	tb.setColor(Color::Red, Color::White);
 	tb.setWidth(30);
 	tb.setHeight(1);
-	tb.setTop(1);
+	tb.setTop(2);
 	tb.setLeft(1 + (short)value.size() + 1);
 	p.add(&tb);
 
