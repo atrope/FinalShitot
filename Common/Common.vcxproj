@@ -111,6 +111,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="CheckList.cpp" />
     <ClCompile Include="Control.cpp" />
     <ClCompile Include="EventEngine.cpp" />
     <ClCompile Include="Graphics.cpp" />
@@ -121,6 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.h" />
+    <ClInclude Include="CheckList.h" />
     <ClInclude Include="Control.h" />
     <ClInclude Include="EventEngine.h" />
     <ClInclude Include="Graphics.h" />
