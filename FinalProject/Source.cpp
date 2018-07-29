@@ -4,21 +4,17 @@
 #include "../Common/TextBox.h"
 #include "../Common/Panel.h"
 #include "../Common/Button.h"
-<<<<<<< HEAD
+
 #include "../Common/CheckList.h"
-=======
+
 #include "../Common/NumericBox.h"
->>>>>>> bf6c344c4c875f2bb7e4f2f522df20dfb8c2822d
+
 
 int main(int argc, char** argv){
 	EventEngine e;
-<<<<<<< HEAD
+
 	Panel p;
 	CheckList cl(0,20,5);
-	TextBox tb;
-=======
-	Panel p;	
->>>>>>> bf6c344c4c875f2bb7e4f2f522df20dfb8c2822d
 	string value("teste");
 	string test_val("My button");
 	//p.setWidth(300);
@@ -31,11 +27,7 @@ int main(int argc, char** argv){
 	p.add(&l);
 
 	Button b2(test_val, Color::Green, Color::Blue);
-<<<<<<< HEAD
-	b2.setTop(40);
-	b2.setLeft(0);
-	p.add(&l); p.add(&b1); p.add(&b2); p.add(&cl);
-=======
+	p.add(&cl);
 	b2.setTop(20);
 	b2.setLeft(20);
 	p.add(&b2);
@@ -47,7 +39,6 @@ int main(int argc, char** argv){
 	p.add(&nb);
 
 	TextBox tb;
->>>>>>> bf6c344c4c875f2bb7e4f2f522df20dfb8c2822d
 	tb.setColor(Color::Red, Color::White);
 	tb.setWidth(30);
 	tb.setHeight(1);
