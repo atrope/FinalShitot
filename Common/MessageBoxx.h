@@ -14,4 +14,5 @@ public:
 	virtual ~MessageBoxx();
 	virtual void setColor(Color background, Color foreground);
 	void draw(Graphics& g);
+	virtual void drawInside(Graphics& g);
 };

@@ -16,5 +16,7 @@ public:
 	void setActual(int val) { this->actual = val; }
 	virtual void setColor(Color background, Color foreground);
 	void draw(Graphics& g);
+	virtual void drawInside(Graphics& g);
+
 };
 

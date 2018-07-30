@@ -18,5 +18,7 @@ public:
 	//void keyDown(int keyCode, char character, Graphics& g);
 	//void setSelectedItem(const int pos, char symbol);
 	bool myPureFunction() { return false; };
+	virtual void drawInside(Graphics& g);
+
 	~RadioBox();
 };

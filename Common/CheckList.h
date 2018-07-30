@@ -15,6 +15,8 @@ public:
 	~CheckList();
 	void draw(Graphics& g);
 	bool myPureFunction() { return false; };
+	virtual void drawInside(Graphics& g);
+
 	//void goUp();
 	//void goDown();
 	//void choose();

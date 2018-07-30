@@ -1,8 +1,6 @@
 #include "Panel.h"
+Panel::Panel() : Control() {
 
-
-Panel::Panel() : Control() {};
-
-Panel::~Panel()
-{
+};
+Panel::~Panel(){
 }

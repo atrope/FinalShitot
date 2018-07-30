@@ -20,8 +20,7 @@ public:
 	void draw(Graphics& g);
 	void setForeground(Color color) { this->foreground = color; }
 	void setBackground(Color color) { this->background= color; }
-
-
+	virtual void drawInside(Graphics& g);
 	bool myPureFunction() { return false; };
 	//Control* getFocus() { cout << "here " << endl;  return this; };
 
