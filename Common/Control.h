@@ -14,6 +14,7 @@ protected:
 	short top;
 	short width, height;
 	short parentLeft, parentTop;
+	short cursorLoc;
 	bool isFocus;
 	bool isClick;
 	bool isBorder;
@@ -21,9 +22,14 @@ protected:
 	Control* connected_control;
 
 public:
-	Control() : left(1), top(1), isFocus(true), width(0), height(0), isBorder(false),parentTop(0),parentLeft(0), connected_control(NULL),background(Color::Black),foreground(Color::White){};
+	Control() : left(1), top(1),cursorLoc(2), isFocus(true), width(0), height(0), isBorder(false),parentTop(0),parentLeft(0), connected_control(NULL),background(Color::Black),foreground(Color::White){};
 
-	Control::Control(short left, short top) : isFocus(true), width(0), height(0), parentTop(0), parentLeft(0),isBorder(false), connected_control(NULL), background(Color::Black), foreground(Color::White) { this->left = left; this->top = top; }
+	Control::Control(short left, short top) : isFocus(true), width(0), height(0), parentTop(0), parentLeft(0), isBorder(false), connected_control(NULL), background(Color::Black), foreground(Color::White) { 
+	this->left = left; 
+	this->top = top; 
+	this->cursorLoc = left+1; 
+	}
+	
 	static Control* getFocus() { return focused; };
 	static void setFocus(Control& control) { focused = &control; };
 
@@ -42,10 +48,11 @@ public:
 	virtual void setHeight(short height) { this->height = height; };
 	virtual void setWidth(short width) { this->width = width; };
 	virtual void setTop(short top) { this->top = top; };
-	virtual void setLeft(short left) { this->left = left; };
+	virtual void setLeft(short left) { this->left = left; setCursorLoc(left+1); };
 	virtual void setBorder(bool border) { this->isBorder = border; };
 	virtual void getAllControls(vector<Control*>* controls);
-	virtual int getCrusorLoc() { return left + width; };
+	virtual short getCursorLoc() { return this->cursorLoc; };
+	virtual void setCursorLoc(short value) { this->cursorLoc = value; }
 	virtual bool canGetFocus() { return isFocus; };
 	virtual bool hasBorder() { return isBorder; };
 	virtual void drawBorder(Graphics& g, Control* control);

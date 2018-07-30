@@ -6,7 +6,6 @@
 TextBox::TextBox(short left, short top, short width = 30) : Control(left,top){
 	this->width = width;
 	setBorder(true);
-	crusorLoc = left; 			//set on left
 }
 
 //Destructor 
@@ -29,38 +28,31 @@ void TextBox::drawInside(Graphics& g) {
 
 void TextBox::addValue(char newValue, Graphics& g)
 {
-	if (this->value.size() > this->width) {
-		if (this->value.size() > this->crusorLoc) {
-			this->value.replace(this->crusorLoc -1, 1, &newValue);
-		}
-		else {
-			this->value.push_back(newValue);
-			
-		}
-		g.write(left, top, value); 
-		crusorLoc++;					//move cursor right
+	short tmploca = getCursorLoc();
+	if (this->value.size() < this->width) {
+		this->value.insert(this->value.begin()+ (tmploca++ - left - 1), newValue); //Remove it
+		setCursorLoc(tmploca);
+		g.write(left, top, value);
 	}
 }
 
-//Deleting Char 
-void TextBox::delChar(Graphics& g)
+void TextBox::delChar(Graphics& g,bool type) // false=>backspace true=>del
 {
-	if (this->value.size()) {
-		this->value.replace(this->value.size() - 1, 1, " ");
+	short tmploca = getCursorLoc();
+	if (this->value.size() && ((tmploca - left > 1 && !type) || (type && (tmploca - left)<=this->value.size()))) {
+		if (!type) this->value.erase(--tmploca - left - 1, 1); //Remove it
+		else this->value.erase(tmploca - left-1, 1); //Remove it
+		setCursorLoc(tmploca);
 		g.write(left, top, value); // Draw string without the Char
-		this->value.pop_back(); //Remove it
-		g.moveTo(this->getLeft() + this->value.size(), this->getTop()); //Refresh Cursor
-		--crusorLoc;
 	}
 }
 
-//BackSpace
+//arrow left
 void TextBox::goBack(Graphics& g)
 {
 	COORD loc = g.GetCursorPosition();
 	if (left < loc.X - 1) {
-		crusorLoc = loc.X - 1;
-		g.moveTo(loc.X - 1, top); //Refresh Cursor	
+		setCursorLoc(loc.X - 1);	
 	}
 		
 }
@@ -69,9 +61,8 @@ void TextBox::goBack(Graphics& g)
 void TextBox::goForward(Graphics& g)
 {
 	COORD loc = g.GetCursorPosition();
-	if(left + width > loc.X + 1) {
-		crusorLoc = loc.X + 1;
-		g.moveTo(loc.X + 1, top); //Refresh Cursor	
+	if(value.size() >= (loc.X - left)) {
+		setCursorLoc(loc.X + 1);
 	}
 }
 
@@ -80,11 +71,11 @@ void TextBox::keyDown(int keyCode, char character, Graphics& g)
 {
 	switch (keyCode)
 	{
-
-	case VK_BACK:			//Case: Click on backspace
-		this->delChar(g);
-
-	case VK_LEFT:			//Case: Click on left arrow
+	case VK_DELETE: //Case: Click on backspace and delete
+	case VK_BACK:
+		this->delChar(g, VK_DELETE == keyCode);
+		return;
+	case VK_LEFT:
 		this->goBack(g);
 		return;
 
@@ -101,3 +92,44 @@ void TextBox::keyDown(int keyCode, char character, Graphics& g)
 	}
 
 }
+/*
+bool TextBox::mousePressed(int x, int y, bool isLeft, Graphics& g)
+{
+
+	g.setCursorVisibility(true);
+
+	//there could be 2 cases now:
+	//1. pressing at an empty (at the end) non written space
+	//2. pressing in between letters
+
+	if (value.empty()) {
+		g.moveTo(getLeft() , getTop());
+	}
+	else
+	{
+		COORD end_str_pos = valueEndPos();
+
+		//case 1:
+		//todo: replace this first 'if' with isInTextBoundaries() call:
+		if (y >= end_str_pos.Y && x >= end_str_pos.X ||
+			y > end_str_pos.Y)
+		{
+			debug(PG_DBG_INFO, "%s clicked outside text.", fn);
+			if (end_str_pos.X == getLeft() + getWidth() - BORDER_OFFSET * 2)
+			{
+				setLastPos({ getLeft() + 1, end_str_pos.Y });
+			}
+			else
+			{
+				setLastPos({ end_str_pos.X + 1, end_str_pos.Y });
+			}
+		}
+		else
+		{
+			//case 2:
+			debug(PG_DBG_INFO, "%s clicked between text.", fn);
+			setLastPos({ (short)x, (short)y });
+		}
+	}
+	return true;
+}*/

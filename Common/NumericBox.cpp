@@ -11,7 +11,8 @@ NumericBox::NumericBox(int min=0,int max=99,short left=0,short top=0) : TextBox(
 	this->min = min;
 	this->max = max;
 	setActual(min);
-	setValue(" " + to_string(min));			//enter space for a 2 digit number
+	isFocus = false; //No Focus for now
+	setValue(" " + to_string(min));
 	setHeight(1);
 
 	plus.setValue(" + ");					//adding "+" symbol
@@ -24,7 +25,6 @@ NumericBox::NumericBox(int min=0,int max=99,short left=0,short top=0) : TextBox(
 	minus.setLeft(plus.getLeft() + plus.getWidth() + 2 );
 	minus.setTop(getTop());
 	minus.setWidth(3);
-
 }
 
 //Set Background and ForeGround Color
