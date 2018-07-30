@@ -1,5 +1,14 @@
 #include "Graphics.h"
 
+/*
+Grapichs:
+Resources to write in screen.
+- Background
+- Coordinates
+- Colors
+- Visibility
+*/
+
 Graphics::Graphics(DWORD stdHandle)
 	: _console(GetStdHandle(stdHandle)), _background(Color::Black), _foreground(Color::White)
 {
