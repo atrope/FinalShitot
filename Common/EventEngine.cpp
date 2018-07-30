@@ -1,5 +1,6 @@
 #include "EventEngine.h"
 #include "TextBox.h"
+#include "Panel.h"
 #include <vector>
 #include <algorithm>
 using namespace std;
@@ -32,26 +33,14 @@ static void setFocusable(Control& main)
 	}
 	return;
 }
-/*void EventEngine::drawPanel(Control &main, Graphics& g) {
-	string tmp = " ";
-	tmp.resize(main.getWidth());
-	g.clearScreen();
-	main.drawBorder(g);
-	Color oldBack = g.getBackground();
-	Color oldFore = g.getForeground();
-	g.setBackground(main.getBackground());
-	g.setForeground(main.getForeground());
-	for (size_t i = 0; i < main.getHeight(); i++) 
-		g.write(main.getLeft(), main.getTop() + i, tmp);
-	g.setBackground(oldBack);
-	g.setForeground(oldFore);
-}*/
 void EventEngine::run(Control &main){
-	//drawPanel(main, _graphics);
+
+	//if (typeid(main) == typeid(Panel)) main.draw(_graphics);
 	bool redraw = true;
 	setFocusable(main);
 	while (1){
 		if (redraw){
+			_graphics.clearScreen();
 			_graphics.setCursorVisibility(false);
 			main.draw(_graphics);
 			redraw = false;

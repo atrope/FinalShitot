@@ -49,5 +49,5 @@ int main(int argc, char** argv){
 	MessageBoxx mb(" Mesasge cool", Color::Green, Color::Black, 5,5);
 	p.add(&mb);
 
-	e.run(p);
+	e.run(l);
 }
