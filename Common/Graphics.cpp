@@ -103,3 +103,14 @@ bool isInside(int x, int y, int left, int top, int width, int height)
 	y -= top;
 	return x >= 0 && y >= 0 && x < width && y < height;
 }
+
+COORD Graphics::GetCursorPosition() {
+	CONSOLE_SCREEN_BUFFER_INFO cbsi;
+	if (GetConsoleScreenBufferInfo(_console, &cbsi)) {
+		return cbsi.dwCursorPosition;
+	}
+	else {
+		// The function failed. Call GetLastError() for details.
+		return{ 0, 0 };
+	}
+}
