@@ -5,6 +5,10 @@
 #include <algorithm>
 using namespace std;
 
+/*
+Event Engine
+*/
+
 EventEngine::EventEngine(DWORD input, DWORD output)
 	: _console(GetStdHandle(input)), _graphics(output)
 {
@@ -12,6 +16,7 @@ EventEngine::EventEngine(DWORD input, DWORD output)
 	SetConsoleMode(_console, ENABLE_WINDOW_INPUT | ENABLE_MOUSE_INPUT);
 }
 
+//if user can interract with the control
 static void setFocusable(Control& main)
 {
 	vector<Control*> controls;
@@ -34,8 +39,6 @@ static void setFocusable(Control& main)
 	return;
 }
 void EventEngine::run(Control &main){
-
-	//if (typeid(main) == typeid(Panel)) main.draw(_graphics);
 	bool redraw = true;
 	setFocusable(main);
 	while (1){
@@ -90,10 +93,13 @@ void EventEngine::run(Control &main){
 	}
 }
 
+
+//Destructor
 EventEngine::~EventEngine()
 {
 	SetConsoleMode(_console, _consoleMode);
 }
+
 
 void EventEngine::moveFocus(Control &main, Control *focused)
 {

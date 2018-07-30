@@ -1,6 +1,11 @@
 #include "Button.h"
 
-Button::Button() : Label(){
+/*
+	Button, has behaviour
+*/
+
+
+Button::Button() : Label(){ //Button ihnerit from Label so, is create also a Label when the Consturctor is Called
 	isFocus = false;
 	isClick = true;
 	setWidth(getValue().size());
@@ -8,13 +13,14 @@ Button::Button() : Label(){
 	setBorder(true);
 }
 
-Button::Button(string value) : Label(value){
+
+Button::Button(string value) : Label(value){ //Constructor as Default but Recieving String
 	setWidth(getValue().size());
 	setHeight(1);
 	setBorder(true);
 
 }
-
+//Constructor as Default but Recieving Value, Backgroung, Foregroud Colors
 Button::Button(string value, Color background, Color foreground) : Label(value,background,foreground){
 	setWidth(getValue().size());
 	setHeight(1);
@@ -36,10 +42,12 @@ bool Button::mousePressed(int x, int y, bool isLeft, Graphics& g)
 	return false;
 }*/
 
+
 bool Button::myPureFunction()
 {
 	return false;
 }
 
+//Destructor
 Button::~Button(){
 }
