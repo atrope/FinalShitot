@@ -19,8 +19,10 @@ int main(int argc, char** argv){
 	string test_val("My button");
 	p.setWidth(80);
 	p.setHeight(28);
+	p.setTop(4);
+	p.setLeft(3);
 	p.setBorder(true);
-	p.setColor(Color::Red,Color::White);
+	p.setColor(Color::Cyan,Color::White);
 
 	Label l(value, Color::White, Color::Black);
 	l.setTop(1);
@@ -49,5 +51,5 @@ int main(int argc, char** argv){
 	MessageBoxx mb(" Mesasge cool", Color::Green, Color::Black, 5,5);
 	p.add(&mb);
 
-	e.run(l);
+	e.run(p);
 }
