@@ -1,20 +1,23 @@
 #include "TextBox.h"
 
+//Show input in textbox
 
-
+//Constructor default width = 30
 TextBox::TextBox(short left, short top, short width = 30) : Control(left,top){
 	this->width = width;
 	setBorder(true);
-	//crusorLoc = left;
 }
 
+//Destructor 
 TextBox::~TextBox()
 {
 }
 
+
 void TextBox::draw(Graphics& g) {
 	drawIt(g, this);
 }
+
 void TextBox::drawInside(Graphics& g) {
 	string tmp = getValue();
 	for (int i = tmp.size(); i<getWidth(); i++)
@@ -44,7 +47,7 @@ void TextBox::delChar(Graphics& g,bool type) // false=>backspace true=>del
 	}
 }
 
-
+//arrow left
 void TextBox::goBack(Graphics& g)
 {
 	COORD loc = g.GetCursorPosition();
@@ -54,6 +57,7 @@ void TextBox::goBack(Graphics& g)
 		
 }
 
+//Space
 void TextBox::goForward(Graphics& g)
 {
 	COORD loc = g.GetCursorPosition();
@@ -62,11 +66,12 @@ void TextBox::goForward(Graphics& g)
 	}
 }
 
+//Arrows
 void TextBox::keyDown(int keyCode, char character, Graphics& g)
 {
 	switch (keyCode)
 	{
-	case VK_DELETE:
+	case VK_DELETE: //Case: Click on backspace and delete
 	case VK_BACK:
 		this->delChar(g, VK_DELETE == keyCode);
 		return;
@@ -74,14 +79,14 @@ void TextBox::keyDown(int keyCode, char character, Graphics& g)
 		this->goBack(g);
 		return;
 
-	case VK_RIGHT:
+	case VK_RIGHT:			//Case: Click on right arrow
 		this->goForward(g);
 		return;
 
 	default:
-		if (keyCode >= 32 && keyCode <= 126)
-		{
-			this->addValue(character, g);
+		if (keyCode >= 32 && keyCode <= 126) //Key in ASCII Table Must be between Space to ~
+		{					
+			this->addValue(character, g); //add value to control
 		}
 		break;
 	}

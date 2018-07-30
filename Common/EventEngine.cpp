@@ -1,8 +1,13 @@
 #include "EventEngine.h"
 #include "TextBox.h"
+#include "Panel.h"
 #include <vector>
 #include <algorithm>
 using namespace std;
+
+/*
+Event Engine
+*/
 
 EventEngine::EventEngine(DWORD input, DWORD output)
 	: _console(GetStdHandle(input)), _graphics(output)
@@ -11,6 +16,7 @@ EventEngine::EventEngine(DWORD input, DWORD output)
 	SetConsoleMode(_console, ENABLE_WINDOW_INPUT | ENABLE_MOUSE_INPUT);
 }
 
+//if user can interract with the control
 static void setFocusable(Control& main)
 {
 	vector<Control*> controls;
@@ -32,7 +38,6 @@ static void setFocusable(Control& main)
 	}
 	return;
 }
-
 void EventEngine::run(Control &main)
 {
 	bool redraw = true;
@@ -47,7 +52,7 @@ void EventEngine::run(Control &main)
 		}
 		auto focused = Control::getFocus();
 
-		if (typeid(TextBox)==typeid((*focused))){
+		if (focused != NULL && typeid(TextBox)==typeid((*focused))){
 			_graphics.setCursorVisibility(true);
 				_graphics.moveTo(focused->getCursorLoc(), focused->getTop());
 		}
@@ -90,10 +95,13 @@ void EventEngine::run(Control &main)
 	}
 }
 
+
+//Destructor
 EventEngine::~EventEngine()
 {
 	SetConsoleMode(_console, _consoleMode);
 }
+
 
 void EventEngine::moveFocus(Control &main, Control *focused)
 {

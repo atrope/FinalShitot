@@ -7,6 +7,5 @@ public:
 	~Panel();
 	bool myPureFunction() { return false; };
 	virtual void drawInside(Graphics& g) {};
-
 };
 

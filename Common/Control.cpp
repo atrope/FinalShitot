@@ -10,9 +10,9 @@ Control::~Control() {
 }
 
 void Control::draw(Graphics& g) {
-	for each (Control* control in controls) {
+	this->drawIt(g,this);
+	for each (Control* control in controls)
 		control->draw(g);
-	}
 }
 
 void Control::drawIt(Graphics& g, Control* control) {
