@@ -1,20 +1,24 @@
 #include "TextBox.h"
 
+//Show input in textbox
 
-
+//Constructor default width = 30
 TextBox::TextBox(short left, short top, short width = 30) : Control(left,top){
 	this->width = width;
 	setBorder(true);
-	crusorLoc = left;
+	crusorLoc = left; 			//set on left
 }
 
+//Destructor 
 TextBox::~TextBox()
 {
 }
 
+
 void TextBox::draw(Graphics& g) {
 	drawIt(g, this);
 }
+
 void TextBox::drawInside(Graphics& g) {
 	string tmp = getValue();
 	for (int i = tmp.size(); i<getWidth(); i++)
@@ -33,11 +37,12 @@ void TextBox::addValue(char newValue, Graphics& g)
 			this->value.push_back(newValue);
 			
 		}
-		g.write(left, top, value);
-		crusorLoc++;
+		g.write(left, top, value); 
+		crusorLoc++;					//move cursor right
 	}
 }
 
+//Deleting Char 
 void TextBox::delChar(Graphics& g)
 {
 	if (this->value.size()) {
@@ -49,6 +54,7 @@ void TextBox::delChar(Graphics& g)
 	}
 }
 
+//BackSpace
 void TextBox::goBack(Graphics& g)
 {
 	COORD loc = g.GetCursorPosition();
@@ -59,6 +65,7 @@ void TextBox::goBack(Graphics& g)
 		
 }
 
+//Space
 void TextBox::goForward(Graphics& g)
 {
 	COORD loc = g.GetCursorPosition();
@@ -68,26 +75,27 @@ void TextBox::goForward(Graphics& g)
 	}
 }
 
+//Arrows
 void TextBox::keyDown(int keyCode, char character, Graphics& g)
 {
 	switch (keyCode)
 	{
 
-	case VK_BACK:
+	case VK_BACK:			//Case: Click on backspace
 		this->delChar(g);
 
-	case VK_LEFT:
+	case VK_LEFT:			//Case: Click on left arrow
 		this->goBack(g);
 		return;
 
-	case VK_RIGHT:
+	case VK_RIGHT:			//Case: Click on right arrow
 		this->goForward(g);
 		return;
 
 	default:
-		if (keyCode >= 32 && keyCode <= 126)
-		{
-			this->addValue(character, g);
+		if (keyCode >= 32 && keyCode <= 126) //Key in ASCII Table Must be between Space to ~
+		{					
+			this->addValue(character, g); //add value to control
 		}
 		break;
 	}
