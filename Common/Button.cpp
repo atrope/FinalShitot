@@ -1,5 +1,10 @@
 #include "Button.h"
 
+/*
+	Button, has behaviour
+*/
+
+
 Button::Button() : Label(){ //Button ihnerit from Label so, is create also a Label when the Consturctor is Called
 	isFocus = false;
 	isClick = true;

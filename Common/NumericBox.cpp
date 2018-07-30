@@ -39,7 +39,7 @@ void NumericBox::draw(Graphics& g) {
 	drawIt(g, this);
 }
 
-//Draw number with + - symbo;s
+//Draw number with + - symbols
 void NumericBox::drawInside(Graphics& g) {
 	TextBox::drawInside(g);
 	plus.draw(g);
