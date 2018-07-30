@@ -110,16 +110,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="CheckList.cpp" />
+    <ClCompile Include="RadioBox.cpp" />
     <ClCompile Include="Control.cpp" />
     <ClCompile Include="EventEngine.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Label.cpp" />
+    <ClCompile Include="MessageBoxx.cpp" />
+    <ClCompile Include="Panel.cpp" />
+    <ClCompile Include="NumericBox.cpp" />
+    <ClCompile Include="TextBox.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Button.h" />
+    <ClInclude Include="CheckList.h" />
+    <ClInclude Include="RadioBox.h" />
     <ClInclude Include="Control.h" />
     <ClInclude Include="EventEngine.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="MessageBoxx.h" />
+    <ClInclude Include="Item.h" />
+    <ClInclude Include="NumericBox.h" />
     <ClInclude Include="Label.h" />
+    <ClInclude Include="Panel.h" />
+    <ClInclude Include="TextBox.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
