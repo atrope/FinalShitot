@@ -20,6 +20,7 @@ public:
 	void write(wstring s);
 	void write(int x, int y, wstring s);
 	void setCursorVisibility(bool isVisible);
+	COORD GetCursorPosition();
 	Color getBackground() { return _background; }
 	Color getForeground() { return _foreground; }
 

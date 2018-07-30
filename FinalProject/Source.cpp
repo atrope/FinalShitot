@@ -4,9 +4,7 @@
 #include "../Common/TextBox.h"
 #include "../Common/Panel.h"
 #include "../Common/Button.h"
-
 #include "../Common/CheckList.h"
-
 #include "../Common/NumericBox.h"
 #include "../Common/MessageBoxx.h"
 #include "../Common/RadioBox.h"

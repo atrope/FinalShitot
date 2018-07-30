@@ -2,17 +2,19 @@
 #include <iostream>
 
 
-Label::Label() : Control(){}
+Label::Label() : Control(){ this->isFocus = false; }
 
 Label::Label(string value) : Control(), value(value) {
 	this->setWidth(value.size());
 	this->setHeight(1);
+	this->isFocus = false;
 };
 
 Label::Label(string value, Color background, Color foreground) : Control(), value(value) {
 	setColor(background, foreground);
 	this->setWidth(value.size());
 	this->setHeight(1);
+	this->isFocus = false;
 
 };
 
@@ -20,6 +22,7 @@ Label::Label(string value, Color background, Color foreground, short left, short
 	setColor(background, foreground);
 	this->setWidth(value.size());
 	this->setHeight(1);
+	this->isFocus = false;
 
 };
 

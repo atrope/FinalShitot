@@ -45,7 +45,7 @@ public:
 	virtual void setLeft(short left) { this->left = left; };
 	virtual void setBorder(bool border) { this->isBorder = border; };
 	virtual void getAllControls(vector<Control*>* controls);
-	virtual short getCrusorLoc() { return left + width; };
+	virtual int getCrusorLoc() { return left + width; };
 	virtual bool canGetFocus() { return isFocus; };
 	virtual bool hasBorder() { return isBorder; };
 	virtual void drawBorder(Graphics& g, Control* control);

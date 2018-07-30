@@ -18,7 +18,7 @@ static void setFocusable(Control& main)
 
 	if (!controls.empty())
 	{
-		//if every child can't be focused by definition, defaultly set the 1st one as focused to avoid empty references:
+		//if every control can't be focused by definition, defaultly set the 1st one as focused to avoid empty references:
 		Control::setFocus(*(controls.at(0)));
 
 		for (size_t i = 0; i < controls.size(); i++)
@@ -60,7 +60,7 @@ void EventEngine::run(Control &main){
 
 		if (dynamic_cast<TextBox*>(focused) != NULL){
 			_graphics.setCursorVisibility(true);
-			_graphics.moveTo( focused->getCrusorLoc(), focused->getTop());
+			_graphics.moveTo(focused->getCrusorLoc(), focused->getTop());
 		}
 
 		INPUT_RECORD record;
