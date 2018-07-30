@@ -20,21 +20,26 @@ EventEngine::EventEngine(DWORD input, DWORD output)
 static void setFocusable(Control& main)
 {
 	vector<Control*> controls;
+	//,controlstmp;
 	main.getAllControls(&controls);
 
-	if (!controls.empty())
-	{
+	if (!controls.empty()){
 		//if every control can't be focused by definition, defaultly set the 1st one as focused to avoid empty references:
 		Control::setFocus(*(controls.at(0)));
-
+		
 		for (size_t i = 0; i < controls.size(); i++)
 		{
-			if (controls.at(i)->canGetFocus())
-			{
+			if (controls.at(i)->canGetFocus()){
 				Control::setFocus(*(controls.at(i)));
+				//controls.at(i)->getAllControls(&controlstmp);
+				//if (controlstmp.empty()) return;
+				//else return setFocusable(*(controls.at(i)));
 				return;
 			}
 		}
+	}
+	else {
+		Control::setFocus(main);
 	}
 	return;
 }
@@ -107,10 +112,12 @@ void EventEngine::moveFocus(Control &main, Control *focused)
 {
 	vector<Control*> controls;
 	main.getAllControls(&controls);
-	auto iterator = find(controls.begin(), controls.end(), focused);
-	do
-		if (++iterator == controls.end())
-			iterator = controls.begin();
-	while (!(*iterator)->canGetFocus());
-	Control::setFocus(**iterator);
+	if (!controls.empty()) {
+		auto iterator = find(controls.begin(), controls.end(), focused);
+		do
+			if (++iterator == controls.end())
+				iterator = controls.begin();
+		while (!(*iterator)->canGetFocus());
+		Control::setFocus(**iterator);
+	}
 }

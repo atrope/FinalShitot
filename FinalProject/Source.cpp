@@ -13,32 +13,28 @@ int main(int argc, char** argv){
 	EventEngine e;
 
 	Panel p;
-	CheckList cl(0,20,5);
-	RadioBox cb(40, 20, 7);
 	string value("teste");
-	string test_val("My button");
 	p.setWidth(80);
 	p.setHeight(28);
 	p.setTop(4);
-	p.setLeft(3);
+	//p.setLeft(3);
 	p.setBorder(true);
-	p.setColor(Color::Cyan,Color::White);
+	p.setColor(Color::Cyan, Color::White);
+	string test_val("My button");
+
+	/*CheckList cl(0,20,5);
+	RadioBox cb(40, 20, 7);
 
 	Label l(value, Color::White, Color::Black);
 	l.setTop(1);
 	l.setLeft(1);
 	p.add(&l);
 
-	Button b2(test_val, Color::Green, Color::Blue);
-	p.add(&cb);
-	p.add(&cl);
-	b2.setTop(20);
-	b2.setLeft(20);
 	p.add(&b2);
 
 	NumericBox nb(0,99,10,10);
 	nb.setColor(Color::Orange, Color::Black);
-	p.add(&nb);
+	p.add(&nb);*/
 
 	TextBox tb;
 	tb.setColor(Color::Red, Color::White);
@@ -46,10 +42,23 @@ int main(int argc, char** argv){
 	tb.setHeight(1);
 	tb.setTop(2);
 	tb.setLeft(1 + (short)value.size() + 1);
-	p.add(&tb);
+	TextBox tb2;
+	tb2.setColor(Color::Orange, Color::White);
+	tb2.setWidth(10);
+	tb2.setHeight(1);
+	tb2.setTop(5);
+	tb2.setLeft(1 + (short)value.size() + 1);
+	Button b2(test_val, Color::Green, Color::Blue);
+	p.add(&b2);
+	b2.setTop(20);
+	b2.setLeft(20);
 
-	MessageBoxx mb(" Mesasge cool", Color::Green, Color::Black, 5,5);
-	p.add(&mb);
+	//MessageBoxx mb(" Mesasge cool", Color::Green, Color::Black, 5,5);
+	p.add(&tb);
+	p.add(&tb2);
+
 
 	e.run(p);
+
+
 }

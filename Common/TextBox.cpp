@@ -30,20 +30,20 @@ void TextBox::addValue(char newValue, Graphics& g)
 {
 	short tmploca = getCursorLoc();
 	if (this->value.size() < this->width) {
-		this->value.insert(this->value.begin()+ (tmploca++ - left - 1), newValue); //Remove it
+		this->value.insert(this->value.begin()+ (tmploca++ - getLeft()), newValue); //Remove it
 		setCursorLoc(tmploca);
-		g.write(left, top, value);
+		g.write(getLeft(), getTop(), value);
 	}
 }
 
 void TextBox::delChar(Graphics& g,bool type) // false=>backspace true=>del
 {
 	short tmploca = getCursorLoc();
-	if (this->value.size() && ((tmploca - left > 1 && !type) || (type && (tmploca - left)<=this->value.size()))) {
-		if (!type) this->value.erase(--tmploca - left - 1, 1); //Remove it
-		else this->value.erase(tmploca - left-1, 1); //Remove it
+	if (this->value.size() && ((tmploca - getLeft() > 0 && !type) || (type && (tmploca - left)<=this->value.size()))) {
+		if (!type) this->value.erase(--tmploca - getLeft(), 1); //Remove it
+		else this->value.erase(tmploca - getLeft(), 1); //Remove it
 		setCursorLoc(tmploca);
-		g.write(left, top, value); // Draw string without the Char
+		g.write(getLeft(), getTop(), value); // Draw string without the Char
 	}
 }
 
@@ -51,7 +51,7 @@ void TextBox::delChar(Graphics& g,bool type) // false=>backspace true=>del
 void TextBox::goBack(Graphics& g)
 {
 	COORD loc = g.GetCursorPosition();
-	if (left < loc.X - 1) {
+	if (getLeft() <= loc.X - 1) {
 		setCursorLoc(loc.X - 1);	
 	}
 		
@@ -61,7 +61,7 @@ void TextBox::goBack(Graphics& g)
 void TextBox::goForward(Graphics& g)
 {
 	COORD loc = g.GetCursorPosition();
-	if(value.size() >= (loc.X - left)) {
+	if(value.size() > (loc.X - getLeft())) {
 		setCursorLoc(loc.X + 1);
 	}
 }
