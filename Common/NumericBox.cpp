@@ -4,6 +4,7 @@ NumericBox::NumericBox(int min=0,int max=99,short left=0,short top=0) : TextBox(
 	this->min = min;
 	this->max = max;
 	setActual(min);
+	isFocus = false;
 	setValue(" " + to_string(min));
 	setHeight(1);
 
@@ -17,7 +18,6 @@ NumericBox::NumericBox(int min=0,int max=99,short left=0,short top=0) : TextBox(
 	minus.setLeft(plus.getLeft() + plus.getWidth() + 2 );
 	minus.setTop(getTop());
 	minus.setWidth(3);
-
 }
 
 void NumericBox::setColor(Color background, Color foreground) {
