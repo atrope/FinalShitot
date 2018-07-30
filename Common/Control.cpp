@@ -5,16 +5,14 @@ Control* Control::focused = NULL;
 
 Control::~Control() {
 	for each (Control* control in controls)
-	{
 		if (control)
 			delete control;
-	}
 }
-/////
 
 void Control::draw(Graphics& g) {
-	for each (Control* control in controls) 
+	for each (Control* control in controls) {
 		control->draw(g);
+	}
 }
 
 void Control::drawIt(Graphics& g, Control* control) {
@@ -56,7 +54,8 @@ void Control::getAllControls(vector<Control*>* controlsCopy) {
 
 void Control::add(Control* newControl){
 	if (newControl) {
-		//newControl->setTop(top + newControl->getTop());
+
+		newControl->setParentDimensions(this->getLeft(),this->getTop());
 		this->controls.push_back(newControl);
 	}
 }

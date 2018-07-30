@@ -13,6 +13,7 @@ protected:
 	short left;
 	short top;
 	short width, height;
+	short parentLeft, parentTop;
 	bool isFocus;
 	bool isClick;
 	bool isBorder;
@@ -20,9 +21,9 @@ protected:
 	Control* connected_control;
 
 public:
-	Control() : left(1), top(1), isFocus(true), width(0), height(0), isBorder(false), connected_control(NULL),background(Color::Black),foreground(Color::White){};
+	Control() : left(1), top(1), isFocus(true), width(0), height(0), isBorder(false),parentTop(0),parentLeft(0), connected_control(NULL),background(Color::Black),foreground(Color::White){};
 
-	Control::Control(short left, short top) : isFocus(true), width(0), height(0), isBorder(false), connected_control(NULL), background(Color::Black), foreground(Color::White) { this->left = left; this->top = top; }
+	Control::Control(short left, short top) : isFocus(true), width(0), height(0), parentTop(0), parentLeft(0),isBorder(false), connected_control(NULL), background(Color::Black), foreground(Color::White) { this->left = left; this->top = top; }
 	static Control* getFocus() { return focused; };
 	static void setFocus(Control& control) { focused = &control; };
 
@@ -31,12 +32,13 @@ public:
 	virtual void draw(Graphics& g);
 	virtual void mousePressed(int x, int y, bool isLeft) {};
 	virtual void keyDown(int keyCode, char charecter, Graphics& g) {};
-	virtual short getLeft() { return left; };
-	virtual short getTop() { return top; };
+	virtual short getLeft() { return left+parentLeft; };
+	virtual short getTop() { return top+parentTop; };
 	virtual short getHeight() { return height; };
 	virtual Color getBackground() { return background; };
 	virtual Color getForeground() { return foreground; };
 	virtual short getWidth() { return width; };
+	virtual void setParentDimensions(short left, short top) { this->parentTop = top; this->parentLeft = left; };
 	virtual void setHeight(short height) { this->height = height; };
 	virtual void setWidth(short width) { this->width = width; };
 	virtual void setTop(short top) { this->top = top; };
