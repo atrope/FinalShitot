@@ -6,7 +6,7 @@ public:
 	Button();
 	Button(string s);
 	Button(string value, Color background, Color foreground);
-	virtual void mousePressed(int x, int y, bool isLeft, Graphics& g);
+	virtual void mousePressed(int x, int y, bool isLeft);
 	virtual ~Button();
 };
 

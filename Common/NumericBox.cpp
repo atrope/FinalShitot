@@ -7,7 +7,7 @@ Min = 0
 */
 
 
-NumericBox::NumericBox(int min=0,int max=99,short left=0,short top=0) : TextBox(left,top, to_string(max).size()+1){
+NumericBox::NumericBox(int min=0,int max=99,short left=0,short top=0) : TextBox(left,top, (short)(to_string(max).size())+1){
 	this->min = min;
 	this->max = max;
 	setActual(min);
@@ -48,7 +48,7 @@ void NumericBox::drawInside(Graphics& g) {
 	minus.draw(g);
 }
 
-void NumericBox::mousePressed(int x, int y, bool isLeft, Graphics& g) {
+void NumericBox::mousePressed(int x, int y, bool isLeft){
 	int actual = getActual();
 	if (isInside(x, y, &plus) && actual < max) setActual(++actual);
 	else if (isInside(x, y, &minus) && actual > min)setActual(--actual);

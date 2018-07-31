@@ -58,7 +58,7 @@ void EventEngine::run(Control &main)
 		auto focused = Control::getFocus();
 
 		if (focused != NULL && typeid(TextBox)==typeid((*focused))){
-			_graphics.setCursorVisibility(true);
+				_graphics.setCursorVisibility(true);
 				_graphics.moveTo(focused->getCursorLoc(), focused->getTop());
 		}
 
@@ -82,9 +82,9 @@ void EventEngine::run(Control &main)
 			auto x = coord.X;
 			auto y = coord.Y;
 			if (button == FROM_LEFT_1ST_BUTTON_PRESSED || button == RIGHTMOST_BUTTON_PRESSED){
-				main.mousePressed(x, y, button == FROM_LEFT_1ST_BUTTON_PRESSED,_graphics);
-				auto focused = main.getFocus(x, y);
-				if (focused != NULL) moveFocus(main, focused);
+				main.mousePressed(x, y, button == FROM_LEFT_1ST_BUTTON_PRESSED);
+				main.setFocus(x, y);
+				//if (focused != nullptr) moveFocus(main, focused);
 				redraw = true;
 			}
 		}

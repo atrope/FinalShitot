@@ -19,6 +19,6 @@ public:
 		ok.setParentDimensions(left, top);
 		cancel.setParentDimensions(left, top);
 	};
-	virtual void mousePressed(int x, int y, bool isLeft, Graphics& g);
+	virtual void mousePressed(int x, int y, bool isLeft);
 
 };

@@ -10,12 +10,11 @@ protected:
 	Button plus,minus;
 public:
 	NumericBox(int min,int max,short left,short top);
-//	bool mousePressed(int x, int y, bool isLeft, Graphics& g);
 	virtual ~NumericBox();
 	void setActual(int val) { this->actual = val; }
 	int getActual() { return this->actual; }
 	virtual void setColor(Color background, Color foreground);
-	virtual void mousePressed(int x, int y, bool isLeft, Graphics& g);
+	virtual void mousePressed(int x, int y, bool isLeft);
 
 	void draw(Graphics& g);
 	virtual void drawInside(Graphics& g);

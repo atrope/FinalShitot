@@ -77,7 +77,7 @@ void Graphics::setCursorVisibility(bool isVisible)
 
 void Graphics::updateConsoleAttributes()
 {
-	DWORD attributes = 0;
+	WORD attributes = 0;
 
 	switch (_foreground)
 	{

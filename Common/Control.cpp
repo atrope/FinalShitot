@@ -22,7 +22,7 @@ void Control::drawIt(Graphics& g, Control* control) {
 	g.setForeground(control->getForeground());
 	string tmp = " ";
 	tmp.resize(control->getWidth());
-	for (size_t i = 0; i < control->getHeight(); i++)
+	for (short i = 0; i < control->getHeight(); i++)
 		g.write(control->getLeft(), control->getTop() + i, tmp);
 	if (control->hasBorder()) control->drawBorder(g,control);
 	control->drawInside(g);
@@ -48,7 +48,7 @@ void Control::drawBorder(Graphics& g, Control* control){
 }
 
 void Control::getAllControls(vector<Control*>* controlsCopy) {
-	for (int i = 0; i < controls.size(); i++)
+	for (size_t i = 0; i < controls.size(); i++)
 		(*controlsCopy).push_back(controls[i]);
 };
 
@@ -74,17 +74,16 @@ bool Control::isInside(int x, int y,Control* control){
 	return x >= 0 && y >= 0 && x < control->getWidth() && y < control->getHeight();
 }
 
-void Control::mousePressed(int x, int y, bool isLeft, Graphics& g) {
+void Control::mousePressed(int x, int y, bool isLeft) {
 	if (isLeft)
 		for each (Control* control in controls)
 			if (control->isClick && isInside(x, y,control))
-				return control->mousePressed(x, y,isLeft,g);
+				return control->mousePressed(x, y,isLeft);
 }
 
-Control* Control::getFocus(int x, int y) {
+void Control::setFocus(int x, int y) {
 	for each (Control* control in controls)
-		if (control->canGetFocus() && isInside(x, y, control))
-			return control;
-	return NULL;
+		if (control->canGetFocus() && isInside(x, y, control)) 
+			setFocus(*control);
 }
 

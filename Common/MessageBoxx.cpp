@@ -9,14 +9,14 @@ MessageBoxx::MessageBoxx(string value, Color background, Color foreground, short
 	ok.setValue(btnok);
 	ok.setLeft(getLeft()+1);
 	ok.setTop(getTop()+2);
-	ok.setWidth(btnok.size());
+	ok.setWidth((short)(btnok.size()));
 	ok.setColor(background, foreground);
 	cancel.setColor(background, foreground);
 	cancel.setValue(btncancel);
 	cancel.setLeft(ok.getLeft() + ok.getWidth() + 2);
 	cancel.setTop(ok.getTop());
-	cancel.setWidth(btncancel.size());
-	if ((value.size() > ok.getWidth() + cancel.getWidth())) setWidth(value.size() + 3);
+	cancel.setWidth((short)(btncancel.size()));
+	if (((short)(value.size()) > ok.getWidth() + cancel.getWidth())) setWidth((short)(value.size()) + 3);
 	else setWidth(ok.getWidth() + cancel.getWidth() + 3);
 	setHeight(4);
 }
@@ -35,7 +35,7 @@ void MessageBoxx::drawInside(Graphics& g) {
 	ok.draw(g);
 	cancel.draw(g);
 }
-void MessageBoxx::mousePressed(int x, int y, bool isLeft, Graphics& g){
+void MessageBoxx::mousePressed(int x, int y, bool isLeft){
 	ok.setColor(getBackground(), getForeground()); //Reset Colors
 	cancel.setColor(getBackground(), getForeground()); 
 	if (isInside(x, y, &ok)) ok.setColor(Color::Blue,Color::Purple);

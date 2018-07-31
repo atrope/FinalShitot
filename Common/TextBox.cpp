@@ -30,7 +30,7 @@ void TextBox::drawInside(Graphics& g) {
 void TextBox::addValue(char newValue)
 {
 	short tmploca = getCursorLoc();
-	if (this->value.size() < this->width) {
+	if ((short)(this->value.size()) < this->width) {
 		this->value.insert(this->value.begin()+ (tmploca++ - getLeft()), newValue); //Remove it
 		setCursorLoc(tmploca);
 	}
@@ -39,7 +39,7 @@ void TextBox::addValue(char newValue)
 void TextBox::delChar(bool type) // false=>backspace true=>del
 {
 	short tmploca = getCursorLoc();
-	if (this->value.size() && ((tmploca - getLeft() > 0 && !type) || (type && (tmploca - getLeft())<=this->value.size()))) {
+	if (this->value.size() && ((tmploca - getLeft() > 0 && !type) || (type && (tmploca - getLeft())<= (short)(this->value.size())))) {
 		if (!type) this->value.erase(--tmploca - getLeft(), 1); //Remove it
 		else this->value.erase(tmploca - getLeft(), 1); //Remove it
 		setCursorLoc(tmploca);
@@ -54,7 +54,7 @@ void TextBox::goBack(int x)
 
 //Arrow Right
 void TextBox::goForward(int x){
-	if(value.size() > (x - getLeft())) setCursorLoc(x + 1);
+	if((short)(this->value.size()) > (x - getLeft())) setCursorLoc(x + 1);
 }
 
 //Arrows
@@ -81,9 +81,4 @@ void TextBox::keyDown(int keyCode, char character, Graphics& g)
 		break;
 	}
 
-}
-
-void TextBox::mousePressed(int x, int y, bool isLeft, Graphics& g) {
-	setCursorLoc(getCursorLoc());
-	g.setCursorVisibility(true);
 }

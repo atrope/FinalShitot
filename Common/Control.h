@@ -31,14 +31,14 @@ public:
 	}
 	
 	static Control* getFocus() { return focused; };
-	Control* getFocus(int x,int y);
+	void setFocus(int x,int y);
 
 	static void setFocus(Control& control) { focused = &control; };
 
 	void drawIt(Graphics& g, Control* control);
 	virtual void add(Control* newControl);
 	virtual void draw(Graphics& g);
-	virtual void mousePressed(int x, int y, bool isLeft, Graphics& g);
+	virtual void mousePressed(int x, int y, bool isLeft);
 
 	virtual void keyDown(int keyCode, char charecter, Graphics& g) {};
 	virtual short getLeft() { return left+parentLeft; };
