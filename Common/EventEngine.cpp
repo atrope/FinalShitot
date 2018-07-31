@@ -84,7 +84,6 @@ void EventEngine::run(Control &main)
 			if (button == FROM_LEFT_1ST_BUTTON_PRESSED || button == RIGHTMOST_BUTTON_PRESSED){
 				main.mousePressed(x, y, button == FROM_LEFT_1ST_BUTTON_PRESSED);
 				main.setFocus(x, y);
-				//if (focused != nullptr) moveFocus(main, focused);
 				redraw = true;
 			}
 		}

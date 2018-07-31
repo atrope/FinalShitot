@@ -75,7 +75,7 @@ void TextBox::keyDown(int keyCode, char character, Graphics& g)
 		return;
 
 	default:
-		if (keyCode >= 32 && keyCode <= 126) //Key in ASCII Table Must be between Space to ~
+		if (keyCode >= 48 && keyCode <= 126 || keyCode==32) //Key in ASCII Table Must be between Space to ~
 		this->addValue(character); //add value to control
 		
 		break;

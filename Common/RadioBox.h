@@ -11,13 +11,14 @@ private:
 	bool isSelected;
 	short selected_index;
 public:
-	RadioBox(short left, short top, int optNum) :Control(left, top), arrow(0) {
-		for (int i = 0; i < optNum; i++) this->list.push_back({ "Option #" + to_string(i) , false });
-	};
-	void draw(Graphics& g);
-	//void keyDown(int keyCode, char character, Graphics& g);
-	//void setSelectedItem(const int pos, char symbol);
-	virtual void drawInside(Graphics& g);
+	RadioBox(short left, short top, int optNum);
+	RadioBox();
 
+	void draw(Graphics& g);
+	virtual void drawInside(Graphics& g);
+	void keyDown(int keyCode, char character, Graphics& g);
+	void goUp();
+	void goDown();
+	void choose();
 	~RadioBox();
 };

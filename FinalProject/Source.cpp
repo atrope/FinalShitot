@@ -15,15 +15,14 @@ int main(int argc, char** argv){
 	Panel p;
 	string value("teste");
 	p.setWidth(80);
-	p.setHeight(15);
+	p.setHeight(22);
 	p.setTop(4);
 	p.setLeft(5);
 	p.setBorder(true);
 	p.setColor(Color::Cyan, Color::White);
 	string test_val("My button");
 
-	/*CheckList cl(0,20,5);
-	RadioBox cb(40, 20, 7);
+	/*RadioBox cb(40, 20, 7);
 
 	Label l(value, Color::White, Color::Black);
 	l.setTop(1);
@@ -54,8 +53,13 @@ int main(int argc, char** argv){
 	p.add(&b2);
 
 	MessageBoxx mb(" Mesasge cool", Color::Green, Color::Black, 25,6);
-	
-	p.add(&tb);
+	CheckList cl(0, 16, 5);
+	cl.setColor(Color::Purple, Color::White);
+	RadioBox rb(25, 16, 5);
+	rb.setColor(Color::Red, Color::White);
+
+	p.add(&rb);
+	p.add(&cl);
 	p.add(&mb);
 	p.add(&tb2);
 
