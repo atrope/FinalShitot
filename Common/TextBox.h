@@ -5,10 +5,10 @@ class TextBox : public Control
 {
 	string value;
 public:
-	void addValue(char newValue, Graphics& g);
-	void delChar(Graphics& g,bool type);
-	void goBack(Graphics& g);
-	void goForward(Graphics& g);
+	void addValue(char newValue);
+	void delChar(bool type);
+	void goBack(int x);
+	void goForward(int x);
 	void draw(Graphics& g);
 	string getValue() { return this->value; };
 	void setValue(string value) { this->value = value; };

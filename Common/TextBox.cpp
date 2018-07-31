@@ -27,44 +27,34 @@ void TextBox::drawInside(Graphics& g) {
 }
 
 
-void TextBox::addValue(char newValue, Graphics& g)
+void TextBox::addValue(char newValue)
 {
 	short tmploca = getCursorLoc();
 	if (this->value.size() < this->width) {
 		this->value.insert(this->value.begin()+ (tmploca++ - getLeft()), newValue); //Remove it
 		setCursorLoc(tmploca);
-		g.write(getLeft(), getTop(), value);
 	}
 }
 
-void TextBox::delChar(Graphics& g,bool type) // false=>backspace true=>del
+void TextBox::delChar(bool type) // false=>backspace true=>del
 {
 	short tmploca = getCursorLoc();
-	if (this->value.size() && ((tmploca - getLeft() > 0 && !type) || (type && (tmploca - left)<=this->value.size()))) {
+	if (this->value.size() && ((tmploca - getLeft() > 0 && !type) || (type && (tmploca - getLeft())<=this->value.size()))) {
 		if (!type) this->value.erase(--tmploca - getLeft(), 1); //Remove it
 		else this->value.erase(tmploca - getLeft(), 1); //Remove it
 		setCursorLoc(tmploca);
-		g.write(getLeft(), getTop(), value); // Draw string without the Char
 	}
 }
 
 //arrow left
-void TextBox::goBack(Graphics& g)
+void TextBox::goBack(int x)
 {
-	COORD loc = g.GetCursorPosition();
-	if (getLeft() <= loc.X - 1) {
-		setCursorLoc(loc.X - 1);	
-	}
-		
+	if (getLeft() <= --x) setCursorLoc(x);	
 }
 
-//Space
-void TextBox::goForward(Graphics& g)
-{
-	COORD loc = g.GetCursorPosition();
-	if(value.size() > (loc.X - getLeft())) {
-		setCursorLoc(loc.X + 1);
-	}
+//Arrow Right
+void TextBox::goForward(int x){
+	if(value.size() > (x - getLeft())) setCursorLoc(x + 1);
 }
 
 //Arrows
@@ -74,21 +64,20 @@ void TextBox::keyDown(int keyCode, char character, Graphics& g)
 	{
 	case VK_DELETE: //Case: Click on backspace and delete
 	case VK_BACK:
-		this->delChar(g, VK_DELETE == keyCode);
+		this->delChar(VK_DELETE == keyCode);
 		return;
 	case VK_LEFT:
-		this->goBack(g);
+		this->goBack(g.GetCursorPosition().X);
 		return;
 
 	case VK_RIGHT:			//Case: Click on right arrow
-		this->goForward(g);
+		this->goForward(g.GetCursorPosition().X);
 		return;
 
 	default:
 		if (keyCode >= 32 && keyCode <= 126) //Key in ASCII Table Must be between Space to ~
-		{					
-			this->addValue(character, g); //add value to control
-		}
+		this->addValue(character); //add value to control
+		
 		break;
 	}
 
