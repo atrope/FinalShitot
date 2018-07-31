@@ -13,7 +13,7 @@ EventEngine::EventEngine(DWORD input, DWORD output)
 	: _console(GetStdHandle(input)), _graphics(output)
 {
 	GetConsoleMode(_console, &_consoleMode);
-	SetConsoleMode(_console, ENABLE_WINDOW_INPUT | ENABLE_MOUSE_INPUT);
+	SetConsoleMode(_console, ENABLE_EXTENDED_FLAGS | ENABLE_WINDOW_INPUT | ENABLE_MOUSE_INPUT);
 }
 
 //if user can interract with the control
@@ -65,45 +65,35 @@ void EventEngine::run(Control &main)
 		INPUT_RECORD record;
 		DWORD count;
 		ReadConsoleInput(_console, &record, 1, &count);
-		switch (record.EventType)
-		{
-		case KEY_EVENT:
-		{
-			if (focused != nullptr && record.Event.KeyEvent.bKeyDown)
-			{
+
+		if (record.EventType == KEY_EVENT) {
+			//OutputDebugStringA("KEY EVENT\n");
+			if (focused != nullptr && record.Event.KeyEvent.bKeyDown){
 				auto code = record.Event.KeyEvent.wVirtualKeyCode;
 				auto chr = record.Event.KeyEvent.uChar.AsciiChar;
-				if (code == VK_TAB)
-					moveFocus(main, focused);
-				else
-					focused->keyDown(code, chr, _graphics);
+				if (code == VK_TAB) moveFocus(main, focused);
+				else focused->keyDown(code, chr, _graphics);
 				redraw = true;
 			}
-			break;
 		}
-		case MOUSE_EVENT:
-		{
+		else if (record.EventType == MOUSE_EVENT) {
 			auto button = record.Event.MouseEvent.dwButtonState;
 			auto coord = record.Event.MouseEvent.dwMousePosition;
-			auto x = coord.X - main.getLeft();
-			auto y = coord.Y - main.getTop();
-			if (button == FROM_LEFT_1ST_BUTTON_PRESSED || button == RIGHTMOST_BUTTON_PRESSED)
-			{
-				main.mousePressed(x, y, button == FROM_LEFT_1ST_BUTTON_PRESSED);
+			auto x = coord.X;
+			auto y = coord.Y;
+			if (button == FROM_LEFT_1ST_BUTTON_PRESSED || button == RIGHTMOST_BUTTON_PRESSED){
+				main.mousePressed(x, y, button == FROM_LEFT_1ST_BUTTON_PRESSED,_graphics);
+				auto focused = main.getFocus(x, y);
+				if (focused != NULL) moveFocus(main, focused);
 				redraw = true;
 			}
-			break;
-		}
-		default:
-			break;
 		}
 	}
 }
 
 
 //Destructor
-EventEngine::~EventEngine()
-{
+EventEngine::~EventEngine(){
 	SetConsoleMode(_console, _consoleMode);
 }
 

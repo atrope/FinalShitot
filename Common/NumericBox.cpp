@@ -12,7 +12,8 @@ NumericBox::NumericBox(int min=0,int max=99,short left=0,short top=0) : TextBox(
 	this->max = max;
 	setActual(min);
 	isFocus = false; //No Focus for now
-	setValue(" " + to_string(min));
+	if (min >=-9) setValue(" " + to_string(min));
+	else setValue(to_string(min));
 	setHeight(1);
 
 	plus.setValue(" + ");					//adding "+" symbol
@@ -25,6 +26,7 @@ NumericBox::NumericBox(int min=0,int max=99,short left=0,short top=0) : TextBox(
 	minus.setLeft(plus.getLeft() + plus.getWidth() + 2 );
 	minus.setTop(getTop());
 	minus.setWidth(3);
+	setWidth(plus.getWidth() + minus.getWidth() + getWidth()+4);
 }
 
 //Set Background and ForeGround Color
@@ -46,10 +48,14 @@ void NumericBox::drawInside(Graphics& g) {
 	minus.draw(g);
 }
 
+void NumericBox::mousePressed(int x, int y, bool isLeft, Graphics& g) {
+	int actual = getActual();
+	if (isInside(x, y, &plus) && actual < max) setActual(++actual);
+	else if (isInside(x, y, &minus) && actual > min)setActual(--actual);
 
-bool NumericBox::myPureFunction(){return false;}
-
-
+	if (actual >= -9) setValue(" " + to_string(actual));
+	else setValue(to_string(actual));
+}
 //Destructor
 NumericBox::~NumericBox() {
 }

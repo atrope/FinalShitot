@@ -6,6 +6,7 @@
 TextBox::TextBox(short left, short top, short width = 30) : Control(left,top){
 	this->width = width;
 	setBorder(true);
+	this->isClick = true;
 }
 
 //Destructor 
@@ -92,44 +93,8 @@ void TextBox::keyDown(int keyCode, char character, Graphics& g)
 	}
 
 }
-/*
-bool TextBox::mousePressed(int x, int y, bool isLeft, Graphics& g)
-{
 
+void TextBox::mousePressed(int x, int y, bool isLeft, Graphics& g) {
+	setCursorLoc(getCursorLoc());
 	g.setCursorVisibility(true);
-
-	//there could be 2 cases now:
-	//1. pressing at an empty (at the end) non written space
-	//2. pressing in between letters
-
-	if (value.empty()) {
-		g.moveTo(getLeft() , getTop());
-	}
-	else
-	{
-		COORD end_str_pos = valueEndPos();
-
-		//case 1:
-		//todo: replace this first 'if' with isInTextBoundaries() call:
-		if (y >= end_str_pos.Y && x >= end_str_pos.X ||
-			y > end_str_pos.Y)
-		{
-			debug(PG_DBG_INFO, "%s clicked outside text.", fn);
-			if (end_str_pos.X == getLeft() + getWidth() - BORDER_OFFSET * 2)
-			{
-				setLastPos({ getLeft() + 1, end_str_pos.Y });
-			}
-			else
-			{
-				setLastPos({ end_str_pos.X + 1, end_str_pos.Y });
-			}
-		}
-		else
-		{
-			//case 2:
-			debug(PG_DBG_INFO, "%s clicked between text.", fn);
-			setLastPos({ (short)x, (short)y });
-		}
-	}
-	return true;
-}*/
+}

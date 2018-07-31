@@ -14,7 +14,6 @@ public:
 		for (int i = 0; i < optNum; i++) this->list.push_back({ "Option #" + to_string(i) , false }); };
 	~CheckList();
 	void draw(Graphics& g);
-	bool myPureFunction() { return false; };
 	virtual void drawInside(Graphics& g);
 
 	//void goUp();

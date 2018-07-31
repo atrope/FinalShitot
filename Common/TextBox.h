@@ -12,11 +12,10 @@ public:
 	void draw(Graphics& g);
 	string getValue() { return this->value; };
 	void setValue(string value) { this->value = value; };
-	//bool mousePressed(int x, int y, bool isLeft, Graphics& g);
+	virtual void mousePressed(int x, int y, bool isLeft, Graphics& g);
 	TextBox() : Control(){setBorder(true);};
 	TextBox(short left, short top, short width);
 	void keyDown(int keyCode, char character, Graphics& g);
-	bool myPureFunction() { return true; };
 	virtual void drawInside(Graphics& g);
 
 	~TextBox();

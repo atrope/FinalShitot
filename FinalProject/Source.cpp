@@ -15,9 +15,9 @@ int main(int argc, char** argv){
 	Panel p;
 	string value("teste");
 	p.setWidth(80);
-	p.setHeight(28);
+	p.setHeight(15);
 	p.setTop(4);
-	//p.setLeft(3);
+	p.setLeft(5);
 	p.setBorder(true);
 	p.setColor(Color::Cyan, Color::White);
 	string test_val("My button");
@@ -32,10 +32,10 @@ int main(int argc, char** argv){
 
 	p.add(&b2);
 
-	NumericBox nb(0,99,10,10);
+	*/
+	NumericBox nb(-5, 99, 5, 9);
 	nb.setColor(Color::Orange, Color::Black);
-	p.add(&nb);*/
-
+	p.add(&nb);
 	TextBox tb;
 	tb.setColor(Color::Red, Color::White);
 	tb.setWidth(30);
@@ -49,12 +49,14 @@ int main(int argc, char** argv){
 	tb2.setTop(5);
 	tb2.setLeft(1 + (short)value.size() + 1);
 	Button b2(test_val, Color::Green, Color::Blue);
+	b2.setTop(13);
+	b2.setLeft(5);
 	p.add(&b2);
-	b2.setTop(20);
-	b2.setLeft(20);
 
-	//MessageBoxx mb(" Mesasge cool", Color::Green, Color::Black, 5,5);
+	MessageBoxx mb(" Mesasge cool", Color::Green, Color::Black, 25,6);
+	
 	p.add(&tb);
+	p.add(&mb);
 	p.add(&tb2);
 
 

@@ -54,7 +54,6 @@ void Control::getAllControls(vector<Control*>* controlsCopy) {
 
 void Control::add(Control* newControl){
 	if (newControl) {
-
 		newControl->setParentDimensions(this->getLeft(),this->getTop());
 		this->controls.push_back(newControl);
 	}
@@ -69,3 +68,23 @@ void Control::setConnectedControl(Control *c)
 {
 	connected_control = c;
 }
+bool Control::isInside(int x, int y,Control* control){
+	x -= control->getLeft();
+	y -= control->getTop(); 
+	return x >= 0 && y >= 0 && x < control->getWidth() && y < control->getHeight();
+}
+
+void Control::mousePressed(int x, int y, bool isLeft, Graphics& g) {
+	if (isLeft)
+		for each (Control* control in controls)
+			if (control->isClick && isInside(x, y,control))
+				return control->mousePressed(x, y,isLeft,g);
+}
+
+Control* Control::getFocus(int x, int y) {
+	for each (Control* control in controls)
+		if (control->canGetFocus() && isInside(x, y, control))
+			return control;
+	return NULL;
+}
+
