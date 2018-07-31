@@ -32,8 +32,6 @@ int main(int argc, char** argv){
 	l.setLeft(1);
 	p.add(&l);
 
-	p.add(&b2);
-
 	
 	//NumericBox
 	NumericBox nb(-5, 99, 5, 9);
