@@ -18,11 +18,12 @@ protected:
 	bool isFocus;
 	bool isClick;
 	bool isBorder;
+	bool isLast;
 	Color background, foreground;
 	Control* connected_control;
 
 public:
-	Control() : left(1), top(1),cursorLoc(2), isFocus(true), isClick(false), width(0), height(0), isBorder(false),parentTop(0),parentLeft(0), connected_control(NULL),background(Color::Black),foreground(Color::White){};
+	Control() : isLast(false), left(1), top(1),cursorLoc(2), isFocus(true), isClick(false), width(0), height(0), isBorder(false),parentTop(0),parentLeft(0), connected_control(NULL),background(Color::Black),foreground(Color::White){};
 
 	Control::Control(short left, short top) : isFocus(true), isClick(false), width(0), height(0), parentTop(0), parentLeft(0), isBorder(false), connected_control(NULL), background(Color::Black), foreground(Color::White) {
 	this->left = left; 
@@ -53,8 +54,10 @@ public:
 	virtual void setTop(short top) { this->top = top; };
 	virtual void setLeft(short left) { this->left = left; setCursorLoc(left); };
 	virtual void setBorder(bool border) { this->isBorder = border; };
+	virtual void setIsLast(bool state) { isLast = state; };
 	virtual void getAllControls(vector<Control*>* controls);
 	virtual short getCursorLoc() { return this->cursorLoc+parentLeft; };
+	virtual bool getIsLast() { return isLast; };
 	virtual void setCursorLoc(short value) { this->cursorLoc = value-parentLeft; }
 	virtual bool canGetFocus() { return isFocus; };
 	virtual bool canClick() { return isClick; };

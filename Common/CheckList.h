@@ -15,6 +15,7 @@ public:
 	void keyDown(int keyCode, char character, Graphics& g);
 	void goUp();
 	void goDown();
+	void goTab();
 	void choose();
 };
 

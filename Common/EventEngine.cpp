@@ -1,5 +1,7 @@
 #include "EventEngine.h"
 #include "TextBox.h"
+#include "CheckList.h"
+#include "RadioBox.h"
 #include "Panel.h"
 #include <vector>
 #include <algorithm>
@@ -71,8 +73,18 @@ void EventEngine::run(Control &main)
 			if (focused != nullptr && record.Event.KeyEvent.bKeyDown){
 				auto code = record.Event.KeyEvent.wVirtualKeyCode;
 				auto chr = record.Event.KeyEvent.uChar.AsciiChar;
-				if (code == VK_TAB) moveFocus(main, focused);
-				else focused->keyDown(code, chr, _graphics);
+				if (typeid(CheckList) == typeid((*focused)) || typeid(RadioBox) == typeid((*focused)))
+				{
+					focused->keyDown(code, chr, _graphics);
+					if (code == VK_TAB && focused->getIsLast()) {
+						focused->setIsLast(false);
+						moveFocus(main, focused);
+					}
+				}
+				else {
+					if (code == VK_TAB) moveFocus(main, focused);
+					else focused->keyDown(code, chr, _graphics);
+				}
 				redraw = true;
 			}
 		}
