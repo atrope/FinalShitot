@@ -14,31 +14,30 @@ Run the program in Visual Studio
 
 ## Components
 
-**Panel**
+**Panel**  
 <img alt="Panel" src="images/panel.png">
 
-**Label**
+**Label**  
 <img alt="Label" src="images/label.png">
 
-**Button**
-
+**Button**  
 <img alt="Button" src="images/button.png">
 <img alt="Button active" src="images/buttonactive.png">
 
-**Text Box**
+**Text Box**  
 <img alt="Text Box" src="images/textbox.png">
 
-**Message Box**
+**Message Box**  
 <img alt="Message Box" src="images/messagebox.png">
 <img alt="Message Box Active" src="images/messageboxactive.png">
 
-**Numeric Box**
+**Numeric Box**  
 <img alt="Numeric Box" src="images/numericbox.png">
 <img alt="Numeric Box" src="images/numericboxactive.png">
 
-**Check List**
+**Check List**  
 <img alt="Check List" src="images/checklist.png">
 
-**Radio Box**
+**Radio Box**  
 <img alt="Radio Box" src="images/radiobox.png">
 <img alt="Radio Box Active" src="images/radioboxactive.png">
