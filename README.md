@@ -20,24 +20,24 @@ Run the program in Visual Studio
 **Label**  
 <img alt="Label" src="images/label.png">
 
-**Button**  
+**Button** - Use the Mouse to click  
 <img alt="Button" src="images/button.png">
 <img alt="Button active" src="images/buttonactive.png">
 
-**Text Box**  
+**Text Box** - Type anything you desire.  
 <img alt="Text Box" src="images/textbox.png">
 
-**Message Box**  
+**Message Box** - Use the Mouse to click ok/cancel  
 <img alt="Message Box" src="images/messagebox.png">
 <img alt="Message Box Active" src="images/messageboxactive.png">
 
-**Numeric Box**  
+**Numeric Box** - Use the Mouse to click +/-  
 <img alt="Numeric Box" src="images/numericbox.png">
-<img alt="Numeric Box" src="images/numericboxactive.png">
 
-**Check List**  
+**Check List**  - Use Space to mark the desired option, Arrows to Navigate    
 <img alt="Check List" src="images/checklist.png">
+<img alt="Check List Active" src="images/checklistactive.png">
 
-**Radio Box**  
+**Radio Box** - Use Space to mark the desired option, Arrows to Navigate  
 <img alt="Radio Box" src="images/radiobox.png">
 <img alt="Radio Box Active" src="images/radioboxactive.png">
